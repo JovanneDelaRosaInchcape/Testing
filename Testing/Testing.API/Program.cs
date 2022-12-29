@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Testing.API.Data;
+using Testing.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,7 @@ builder.Services.AddDbContext<TestingDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("Testing"));
 });
-
+builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
